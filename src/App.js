@@ -1,25 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import {getForecast, getLocation} from "./Api/weatherApi";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const onClick = async () => {
+
+        let data = await getLocation("Kiev");
+        console.log(data);
+
+        let forecast = await getForecast(data.woeid);
+        console.log(forecast);
+    }
+
+    return (
+        <div className="App">
+            <button onClick={onClick}>Click me!</button>
+        </div>
+    );
 }
 
 export default App;
