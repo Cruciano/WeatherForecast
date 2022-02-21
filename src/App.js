@@ -5,17 +5,15 @@ import CityForm from "./View/CityForm/cityForm";
 import Loading from "./View/loading";
 import Error from "./View/error";
 import {useEffect, useState} from "react";
-import Forecast from "./View/forecast";
+import Forecast from "./View/Forecast/forecast";
 
 function App() {
-    /*const dispatch = useDispatch();
-    const location = useSelector(getCity);*/
-
+    const city = useSelector(getCity);
     const forecast = useSelector(getWeekForecast);
-    const [showForecast, setShowForecast] = useState(false);
-
     const isLoading = useSelector(getIsLoading);
     const error = useSelector(getError);
+
+    const [showForecast, setShowForecast] = useState(false);
 
     useEffect(() => {
         if (forecast.length !== 0) {
@@ -26,13 +24,14 @@ function App() {
     return (
         <div className="App">
             {!showForecast && (
-                <div>
+                <div className="wrapper">
+                    <h2>Weather forecast</h2>
                     {isLoading || <CityForm/>}
                     {!isLoading || <Loading/>}
                     {(isLoading || error.length === 0) || <Error message={error}/>}
                 </div>
             )}
-            {showForecast && <Forecast forecast={forecast} close={() => setShowForecast(false)}/>}
+            {showForecast && <Forecast city={city} forecast={forecast} close={() => setShowForecast(false)}/>}
         </div>
     );
 }

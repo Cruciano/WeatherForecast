@@ -7,12 +7,13 @@ const TabContainer = ({forecast, selectedDay, setSelectedDay}) => {
         <div className={styles.container}>
             {forecast?.map(item =>
                 <Tab
-                    key={item.date.day}
-                    day={item.date.day}
+                    key={item.date.getDate()}
+                    weekday={item.weekday}
+                    date={item.date.getDate()}
                     maxTemp={item.maxTemp}
                     weatherStateAbbr={item.weatherStateAbbr}
-                    selected={item.date.day === selectedDay}
-                    onClick={() => setSelectedDay(item.date.day)}
+                    selected={item.date.getDate() === selectedDay}
+                    onClick={() => setSelectedDay(item.date.getDate())}
                 />)}
         </div>
     );

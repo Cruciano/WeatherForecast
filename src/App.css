@@ -1,3 +1,31 @@
 .App {
 
 }
+
+.wrapper {
+    background-color: #EEE;
+    padding: 30px;
+    width: 300px;
+    border-radius: 30px;
+}
+
+h2 {
+    text-align: center;
+    margin: 0 0 30px;
+    color: #221058;
+}
+
+p {
+    margin: 0;
+}
+
+.error {
+    margin-top: 10px;
+    color: red;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}

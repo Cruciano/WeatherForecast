@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.imgWrapper {
+    height: 50px;
+    width: 50px
+}
+
+.container .tab:first-child {
+    border-left: none;
+}
+
+.container .tab {
+    padding: 5px;
+    border: solid 1px #c5bedc;
+    border-right: none;
+    width: 70px;
+    border-radius: 0 0 15px 15px;
+    background-color: #f4f2fb;
+}
+
+.container .tab:hover {
+    cursor: pointer;
+}
+
+.container .selected {
+    border-top: solid 1px white;
+    background-color: white;
+}
