@@ -6,7 +6,7 @@ export const setLocation = (title, woeid) => ({
     payload: {
         title,
         woeid,
-    }
+    },
 })
 
 export const setForecast = forecast => ({

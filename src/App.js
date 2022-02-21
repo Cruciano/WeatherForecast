@@ -1,20 +1,38 @@
 import './App.css';
-import {getForecast, getLocation} from "./Api/weatherApi";
+import {useDispatch, useSelector} from "react-redux";
+import {getCity, getError, getIsLoading, getWeekForecast} from "./Application/selectors/weather";
+import CityForm from "./View/CityForm/cityForm";
+import Loading from "./View/loading";
+import Error from "./View/error";
+import {useEffect, useState} from "react";
+import Forecast from "./View/forecast";
 
 function App() {
+    /*const dispatch = useDispatch();
+    const location = useSelector(getCity);*/
 
-    const onClick = async () => {
+    const forecast = useSelector(getWeekForecast);
+    const [showForecast, setShowForecast] = useState(false);
 
-        let data = await getLocation("Kiev");
-        console.log(data);
+    const isLoading = useSelector(getIsLoading);
+    const error = useSelector(getError);
 
-        let forecast = await getForecast(data.woeid);
-        console.log(forecast);
-    }
+    useEffect(() => {
+        if (forecast.length !== 0) {
+            setShowForecast(true);
+        }
+    }, [forecast])
 
     return (
         <div className="App">
-            <button onClick={onClick}>Click me!</button>
+            {!showForecast && (
+                <div>
+                    {isLoading || <CityForm/>}
+                    {!isLoading || <Loading/>}
+                    {(isLoading || error.length === 0) || <Error message={error}/>}
+                </div>
+            )}
+            {showForecast && <Forecast forecast={forecast} close={() => setShowForecast(false)}/>}
         </div>
     );
 }
