@@ -6,6 +6,7 @@ const initialState = {
         woeid: 0,
     },
     forecast: [],
+    selectedDayIndex: 0,
 }
 
 const reducer = (state = initialState, action) => {

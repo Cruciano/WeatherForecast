@@ -22,5 +22,5 @@ export const getForecast = async (woeid) => {
         return;
     }
 
-    return data;
+    return data.consolidated_weather;
 }
